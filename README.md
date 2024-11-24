@@ -64,6 +64,6 @@ flutter pub get
 ```bash
 flutter run
 ```
-**LINK TO YOUTUBE VIDEO**
+LINK TO YOUTUBE VIDEO
 
 [Video link](https://youtu.be/JGoEtDQxcrI)
