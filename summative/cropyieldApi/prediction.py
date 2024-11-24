@@ -5,25 +5,13 @@ import joblib  # type: ignore
 import pandas as pd  # type: ignore
 import numpy as np  # type: ignore
 from enum import Enum
-import gdown  # type: ignore  # To download the model from Google Drive
-import os  # For checking file existence
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 
-# Define the URL for your Google Drive file
-MODEL_URL = "https://drive.google.com/uc?id=1ZsygWkYHKYRZk-XctEDF3n-9wNV96aci"
-MODEL_PATH = "./model/best_model_cropyield.joblib"
 
-# Ensure the model directory exists
-os.makedirs("./model", exist_ok=True)
+MODEL_PATH = "./summative/cropyieldApi/best_model_cropyield.joblib"
 
-# Download the model if it doesn't already exist
-if not os.path.exists(MODEL_PATH):
-    print("Downloading model file from Google Drive...")
-    gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
-    print("Model downloaded successfully!")
-
-# Load the trained model and reference feature names
+# Loading the trained model and reference feature names
 try:
     model = joblib.load(MODEL_PATH)
     X_encoded_columns = model.feature_names_in_
@@ -31,7 +19,7 @@ try:
 except Exception as e:
     raise RuntimeError(f"Failed to load the model: {str(e)}")
 
-# Initialize FastAPI app
+# Initializing FastAPI app
 app = FastAPI(title="Crop Yield Prediction API")
 
 # CORS configuration
@@ -127,7 +115,7 @@ async def startup_event():
 @app.post('/predict')
 async def predict(data: PredictionRequestRanges):
     try:
-        # Prepare input DataFrame
+        # Preparing input DataFrame
         input_data = pd.DataFrame({
             'Year': [data.year],
             'average_rain_fall_mm_per_year': [data.avg_rainfall],
@@ -135,19 +123,19 @@ async def predict(data: PredictionRequestRanges):
             'avg_temp': [data.avg_temp]
         })
         
-        # Convert crop type to series and one-hot encode
+        # Converting crop type to series and one-hot encode
         crop_series = pd.Series([data.crop_type.value])
         crop_dummies = pd.get_dummies(crop_series, prefix='Item')
         
-        # Concatenate the dataframes
+        # Concatenatinating the dataframes
         input_data = pd.concat([input_data, crop_dummies], axis=1)
         
-        # Ensure all required columns are present
+        # Ensuring all required columns are present
         for col in X_encoded_columns:
             if col not in input_data.columns:
                 input_data[col] = 0
 
-        # Reorder columns to match the model's expected input
+        # Reordering columns to match the model's expected input
         input_data = input_data[X_encoded_columns]
         
         # Run prediction asynchronously in the thread pool
