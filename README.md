@@ -8,6 +8,10 @@ I created this linear regression model with a mission to help people in the fiel
 ### 📊 Model
 To train the model I first choosed a dataset containing historical agricultural data and processed it to get the best model with low loss metric which I saved to it for prediction
 
+###Description of dataset
+The  dataset used contains agricultural yield data across various regions, crops, and years. It includes key factors such as rainfall, temperature, and pesticide usage, aiming to analyze their impact on crop yields.
+[Source of dataset: Kaggle](https://www.kaggle.com/datasets/patelris/crop-yield-prediction-dataset)
+
 ### 🚀 Crop Yield Prediction API
 This repository also contains a FastAPI-based RESTful API for predicting crop yields based on various inputs like crop type, year, rainfall, pesticide usage, and average temperature. This API is powered by a machine learning model (best_model_cropyield.joblib) trained before to predict crop yield (in hectograms per hectare) with high accuracy.
 
