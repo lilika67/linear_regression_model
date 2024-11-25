@@ -66,4 +66,14 @@ flutter run
 ```
 **LINK TO YOUTUBE VIDEO**
 
-[Video link](https://youtu.be/JGoEtDQxcrI)
+[Video link](https://youtu.be/_XCb6AH0xVU)
+
+**FlutterApp UI**
+**Screen before making prediction**
+![image](https://github.com/user-attachments/assets/a54e3c78-4d5b-48af-bbf9-9c4de664210a)
+
+**Screen After making prediction**
+![image](https://github.com/user-attachments/assets/7acde096-fcea-481b-ae51-044770aa2fe1)
+
+
+
