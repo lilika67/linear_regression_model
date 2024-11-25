@@ -69,7 +69,9 @@ flutter run
 [Video link](https://youtu.be/_XCb6AH0xVU)
 
 **FlutterApp UI**
+
 **Screen before making prediction**
+
 ![image](https://github.com/user-attachments/assets/a54e3c78-4d5b-48af-bbf9-9c4de664210a)
 
 **Screen After making prediction**
